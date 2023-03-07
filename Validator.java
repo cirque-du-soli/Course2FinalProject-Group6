@@ -127,4 +127,21 @@ public class Validator {
 		return true;
 	}
 	
+	public static boolean isEmail(String str) {
+		String[] strArr = null;
+		strArr = str.split("@");
+		//if input string have more than two @, then return false
+		if (strArr.length>2) return false; 
+		
+		//if isPrefix return false, then return false;
+		if (!isPrefix(strArr[0])) return false;
+		
+		//if isDomain return false, then return false;
+		if (!isDomain(strArr[1])) return false;
+		
+		return true;
+	}
+	
+
+	
 }
