@@ -127,7 +127,7 @@ public class Validator {
 			chr = strArr[0].charAt(i);
 			// if first portion not contains only alphanumeric characters, periods, and
 			// dashes. return false;
-			if (!isAlphaNum(chr) && !isSpecialChar(chr, false)) {
+			if (!isDomainChar(chr)) {
 				return false;
 			}
 		}
