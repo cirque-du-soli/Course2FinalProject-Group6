@@ -142,6 +142,55 @@ public class Validator {
 		return true;
 	}
 	
+	public static String isUsername(String str) {
+		
+		String outputStr = "";
+		boolean validUsername = true;
+		int alphaNumCount = 0;
+		
+		if (str.length() <= 7 && str.length() >= 1) { // if valid length
+		
+			for (int i = 0; i < str.length(); i++) { // iterate through each character
+				
+				if (isDomainChar(str.charAt(i)) || str.charAt(i) == '!') { // if valid character
+					
+					if (i == 0 && !isSpecialChar(str.charAt(i), false)) { // FIRST character must be . or -
+
+						return outputStr; // EXIT: not a valid username -- First char != '.' or '-'
+						
+					//check final criterion
+					} else if (i < str.length() - 1   //check all chars except last one. Last char i = str.length
+							&& (str.charAt(i) == '.' || str.charAt(i) == '.') //if char = . or - 
+							&& !isAlphaNum(str.charAt(i + 1))) {   //following char must be alphaNum
+						
+						return outputStr;
+						
+					}
+
+					if (isAlphaNum(str.charAt(i))) { // must make sure there's one alphaNum at least
+						alphaNumCount++;
+					}
+					
+				} else { // if not a valid character
+					return outputStr;
+				}
+			}
+
+		} else { // if invalid length, skip for loop
+			return outputStr;
+		}
+
+		// must have at least 1 alphanum character
+		if (alphaNumCount < 1) {
+			validUsername = false;
+		}
+
+		// return lowercase valid username, or empty string "" if invalid
+		if (validUsername) {
+			outputStr = str.toLowerCase();
+		}
+		return outputStr;
+	}
 
 	
 }
