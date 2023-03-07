@@ -89,7 +89,7 @@ public class Validator {
 			//if any char in input string is not y alphanumeric characters, underscores (_), periods (.), and dashes (-).then return false
 			if(!isPrefixChar(chr)) {
 				return false;
-			}else if (isSpeciaChar(chr,true) && isSpeciaChar(str.charAt(i+1),true)) {
+			}else if (isSpecialChar(chr,true) && isSpecialChar(str.charAt(i+1),true)) {
 				//if the char in position i is a (-)(_)(.),and followed by another (-)(_)(.), then return false.
 				return false;
 			}
@@ -113,7 +113,7 @@ public class Validator {
 		for(int i=0; i<strArr[0].length(); i++) {
 			chr = strArr[0].charAt(i);
 			//if first portion not contains only alphanumeric characters, periods, and dashes. return false;
-			if (!isAlphaNum(chr) && !isSpeciaChar(chr,false)) {
+			if (!isAlphaNum(chr) && !isSpecialChar(chr,false)) {
 				return false;
 			}
 		}
