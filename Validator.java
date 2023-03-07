@@ -1,4 +1,4 @@
-//Jing Wei -- Student # xyz
+//Jing Wei -- Student # 2343458
 //Soliloquy Yarrow -- Student # 2342261
 
 public class Validator {
@@ -74,4 +74,57 @@ public class Validator {
 		int indexOfAt = str.indexOf('@');
 		return str.substring(0, indexOfAt);
 	}
+	
+	public static boolean isPrefix(String str) {
+		//if the length of input string is 0, then return false;
+		if(str.length()==0) return false;
+		char chr;
+		//if First character is not alphanumeric, then return false;
+		if(!isAlphaNum(str.charAt(0))) {
+			return false;
+		}
+		for(int i=1; i<str.length(); i++) {
+			chr = str.charAt(i);
+			//if any char in input string is not y alphanumeric characters, underscores (_), periods (.), and dashes (-).then return false
+			if(!isPrefixChar(chr)) {
+				return false;
+			}else if (isSpeciaChar(chr,true) && isSpeciaChar(str.charAt(i+1),true)) {
+				//if the char in position i is a (-)(_)(.),and followed by another (-)(_)(.), then return false.
+				return false;
+			}
+			
+		}
+		return true;
+	}
+	
+	public static boolean isDomain(String str) {
+		// if the first char in input string is a period, then return false
+		if (str.charAt(0)=='.') return false;
+		String[] strArr = null;
+		strArr = str.split("\\.");
+		//if strArr.length >2 means there are 2 or more '.' in the input string, return false
+		if (strArr.length>2) {
+			return false;
+		}
+		char chr;
+		// first portion validation
+		if (strArr[0].length()==1) return false;
+		for(int i=0; i<strArr[0].length(); i++) {
+			chr = strArr[0].charAt(i);
+			//if first portion not contains only alphanumeric characters, periods, and dashes. return false;
+			if (!isAlphaNum(chr) && !isSpeciaChar(chr,false)) {
+				return false;
+			}
+		}
+		//second portion validation, contains only letters
+		if (strArr[1].length()<2) return false;
+		for(int i=1; i<strArr[1].length();i++) {
+			chr = strArr[1].charAt(i);
+			if(!Character.isLetter(chr)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 }
