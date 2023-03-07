@@ -182,13 +182,12 @@ public class Validator {
 
 		// must have at least 1 alphanum character
 		if (alphaNumCount < 1) {
-			validUsername = false;
+			return outputString
 		}
 
 		// return lowercase valid username, or empty string "" if invalid
-		if (validUsername) {
-			outputStr = str.toLowerCase();
-		}
+		
+		outputStr = str.toLowerCase();
 		return outputStr;
 	}
 
