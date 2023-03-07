@@ -6,10 +6,11 @@ public class Validator {
 	public static void main(String[] args) {
 
 		// TESTS:
-		System.out.println("the char B is AlphaNum: " + isAlphaNum('B'));
-		System.out.println("the fetchBeforeAt: you@regreat);: " + fetchBeforeAt("you@regreat"));
-		System.out.println("the char B is AlphaNum: " + isAlphaNum('B'));
-		System.out.println("the char B is AlphaNum: " + isAlphaNum('B'));
+		System.out.println("test usernames:");
+		System.out.println("isUsername (\"-User2\")   " + isUsername("-User2"));
+		System.out.println("isUsername (\".cc123\")   " + isUsername (".cc123"));
+		System.out.println("isUsername (\"userName\")   " + isUsername ("userName"));
+		System.out.println("isUsername (\"#sd99\")   " + isUsername("#sd99"));
 
 	}
 
@@ -182,7 +183,7 @@ public class Validator {
 
 		// must have at least 1 alphanum character
 		if (alphaNumCount < 1) {
-			return outputString
+			return outputStr;
 		}
 
 		// return lowercase valid username, or empty string "" if invalid
