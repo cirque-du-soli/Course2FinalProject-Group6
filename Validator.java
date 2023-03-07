@@ -103,8 +103,8 @@ public class Validator {
 		if (str.charAt(0)=='.') return false;
 		String[] strArr = null;
 		strArr = str.split("\\.");
-		//if strArr.length >2 means there are 2 or more '.' in the input string, return false
-		if (strArr.length>2) {
+		//if strArr.length >2 means there are 2 or more '.' in the input string, is length ==1 mean no '.' in the input string return false
+		if (strArr.length>2 || strArr.length==1) {
 			return false;
 		}
 		char chr;
@@ -129,16 +129,14 @@ public class Validator {
 	}
 	
 	public static boolean isEmail(String str) {
-		String[] strArr = null;
-		strArr = str.split("@");
-		//if input string have more than two @, then return false
-		if (strArr.length>2) return false; 
+		//if input string is not contain a single @ sign, then return false;
+		if(!singleAtSign(str)) return false;
 		
 		//if isPrefix return false, then return false;
-		if (!isPrefix(strArr[0])) return false;
+		if (!isPrefix(fetchBeforeAt(str))) return false;
 		
 		//if isDomain return false, then return false;
-		if (!isDomain(strArr[1])) return false;
+		if (!isDomain(fetchAfterAt(str))) return false;
 		
 		return true;
 	}
