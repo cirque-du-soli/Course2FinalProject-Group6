@@ -9,16 +9,31 @@ public class Validator {
 		System.out.println("test usernames:");
 		System.out.println("isUsername (\"-User2\")   " + isUsername("-User2"));
 		System.out.println("isUsername (\".cc123\")   " + isUsername(".cc123"));
-		System.out.println("isUsername (\"userName\")   " + isUsername("userName"));
-		System.out.println("isUsername (\"#sd99\")   " + isUsername("#sd99"));
+		System.out.println("isUsername (\"userName\") " + isUsername("userName"));
+		System.out.println("isUsername (\"#sd99\")    " + isUsername("#sd99"));
+		System.out.println("isUsername(\"-.aemil\")   " + isUsername("-.aemil"));
 
 		System.out.println("test passwords:");
-		System.out.println("safePassword (\"H3ll0-WoRld\")  " + safePassword("H3ll0-WoRld")); // returns true???error in
-																								// assignment
+		System.out.println("safePassword (\"H3ll0-WoRld\")  " + safePassword("H3ll0-WoRld")); // returns true???error in assignment 
 		System.out.println("safePassword (\"W0w.Pr0ject\")  " + safePassword("W0w.Pr0ject")); // returns true
 		System.out.println("safePassword (\"A1.b2-\")       " + safePassword("A1.b2-")); // returns false
 		System.out.println("safePassword (\"D1nn3r-T1m3\")  " + safePassword("D1nn3r-T1m3")); // returns false
 		System.out.println("safePassword (\"Pa55w0RDis0k\") " + safePassword("Pa55w0RDis0k")); // returns false
+		
+		/////////////////////// TO TEST: ///////////////////////////////
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 	}
 
@@ -163,7 +178,14 @@ public class Validator {
 		boolean validUsername = true;
 		boolean containsAlphaNum = false; // must contain one alphaNum
 
+		boolean alphaNumFollows = true; // dash or period must be followed by an alphanum
+
 		if (str.length() <= 7 && str.length() >= 1) { // if valid length
+			
+			//if first char is a period or dash, & not succeded by alphaNum
+			if (isSpecialChar(str.charAt(0), false) && !isAlphaNum(str.charAt(1))) { 
+				validUsername = false;
+			}
 
 			for (int i = 0; i < str.length(); i++) { // iterate through each character
 
@@ -218,11 +240,8 @@ public class Validator {
 		boolean containsPDU = false; // must contain one Period, Dash, or Underscore
 
 		boolean containsAlphaNum = false; // must contain one alphaNum
-
+		
 		boolean noRepeats = true; // no repeating characters
-
-		// min 7, max 15 chars
-		// never repeat same char twice in a row
 
 		if (str.length() >= 7 && str.length() <= 15) { // if valid length
 
@@ -245,6 +264,7 @@ public class Validator {
 
 					} else if (isSpecialChar(str.charAt(i), true)) { // is a period, dash, or underscore
 						containsPDU = true;
+						
 					}
 				} else { // invalid character
 					isSafe = false;
@@ -261,7 +281,7 @@ public class Validator {
 			isSafe = false;
 		}
 
-		// check minimums criteria
+		// check criteria
 		if (!containsUpper || !containsLower || !containsNum || !containsPDU || !containsAlphaNum || !noRepeats) {
 			isSafe = false;
 		}
