@@ -180,23 +180,13 @@ public class Validator {
 
 		boolean alphaNumFollows = true; // dash or period must be followed by an alphanum
 
-		if (str.length() <= 7 && str.length() >= 1) { // if valid length
-			
-			//if first char is a period or dash, & not succeded by alphaNum
-			if (isSpecialChar(str.charAt(0), false) && !isAlphaNum(str.charAt(1))) { 
-				validUsername = false;
-			}
+		if (str.length() <= 7 && str.length() >= 1 && isSpecialChar(str.charAt(0), false)) { // if valid length & first char = '.' or '-'
 
 			for (int i = 0; i < str.length(); i++) { // iterate through each character
 
 				if (isDomainChar(str.charAt(i)) || str.charAt(i) == '!') { // if valid character
 
-					if (i == 0 && !isSpecialChar(str.charAt(i), false)) { // FIRST character must be . or -
-
-						validUsername = false; // EXIT: not a valid username -- First char != '.' or '-'
-
-						// check final criterion
-					} else if (i < str.length() - 1 // check all chars except last one. Last char i = str.length
+					if (i < str.length() - 1 // check all chars except last one. Last char i = str.length
 							&& (isSpecialChar(str.charAt(i), false)) // if char = . or -
 							&& !isAlphaNum(str.charAt(i + 1))) { // following char must be alphaNum
 
@@ -213,7 +203,7 @@ public class Validator {
 				}
 			}
 
-		} else { // if invalid length, skip for loop
+		} else { // if invalid length, or if first char is not . or -, skip for loop
 			validUsername = false;
 		}
 
