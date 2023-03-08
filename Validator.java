@@ -5,28 +5,10 @@ public class Validator {
 
 	public static void main(String[] args) {
 
-		// TESTS:
-		System.out.println("test usernames:");
-		System.out.println("isUsername (\"-User2\")   " + isUsername("-User2"));
-		System.out.println("isUsername (\".cc123\")   " + isUsername(".cc123"));
-		System.out.println("isUsername (\"userName\") " + isUsername("userName"));
-		System.out.println("isUsername (\"#sd99\")    " + isUsername("#sd99"));
-		System.out.println("isUsername(\"-.aemil\")   " + isUsername("-.aemil"));
-
-		System.out.println("test passwords:");
-		System.out.println("safePassword (\"H3ll0-WoRld\")  " + safePassword("H3ll0-WoRld")); // returns true???error in
-																								// assignment
-		System.out.println("safePassword (\"W0w.Pr0ject\")  " + safePassword("W0w.Pr0ject")); // returns true
-		System.out.println("safePassword (\"A1.b2-\")       " + safePassword("A1.b2-")); // returns false
-		System.out.println("safePassword (\"D1nn3r-T1m3\")  " + safePassword("D1nn3r-T1m3")); // returns false
-		System.out.println("safePassword (\"Pa55w0RDis0k\") " + safePassword("Pa55w0RDis0k")); // returns false
-
-		/////////////////////// TO TEST: ///////////////////////////////
-
 	}
 
-	// check if input argument is a letter or a number, if yes return true, not
-	// return false
+	// check if input argument is a letter or a number, 
+	// if yes return true, if not return false
 	public static boolean isAlphaNum(char chr) {
 		if (Character.isLetterOrDigit(chr)) {
 			return true;
@@ -167,10 +149,8 @@ public class Validator {
 		boolean validUsername = true;
 		boolean containsAlphaNum = false; // must contain one alphaNum
 
-		boolean alphaNumFollows = true; // dash or period must be followed by an alphanum
-
-		if (str.length() <= 7 && str.length() >= 1 && isSpecialChar(str.charAt(0), false)) { // if valid length & first
-																								// char = '.' or '-'
+		// if valid length & first char = '.' or '-'
+		if (str.length() <= 7 && str.length() >= 1 && isSpecialChar(str.charAt(0), false)) {
 
 			for (int i = 0; i < str.length(); i++) { // iterate through each character
 
@@ -178,15 +158,17 @@ public class Validator {
 
 					if ((isSpecialChar(str.charAt(i), false)) // if char = . or -
 
-							&& ((i == str.length() - 1) // last character automatically fails, can't be followed by
-														// alpha num
+							// last character automatically fails, can't be followed by alpha num
+							&& ((i == str.length() - 1)
 
-									// this indentation looks weird but is technically correct because 
-									// each || / && is nested
-									|| (i < str.length() - 1 // check all chars except last one. Last char i =
-																// str.length
-											&& !isAlphaNum(str.charAt(i + 1))) // following char must be alphaNum
-							)) {
+									// this indentation looks weird but is technically correct
+									// because each || / && is nested in parentheses
+
+									// check all chars except last one. Last char i = str.length
+									|| (i < str.length() - 1
+
+											// following char must be alphaNum
+											&& !isAlphaNum(str.charAt(i + 1))))) {
 
 						validUsername = false;
 
