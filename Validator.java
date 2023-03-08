@@ -186,10 +186,16 @@ public class Validator {
 
 				if (isDomainChar(str.charAt(i)) || str.charAt(i) == '!') { // if valid character
 
-					if (i < str.length() - 1 // check all chars except last one. Last char i = str.length
-							&& (isSpecialChar(str.charAt(i), false)) // if char = . or -
-							&& !isAlphaNum(str.charAt(i + 1))) { // following char must be alphaNum
-
+					if ((isSpecialChar(str.charAt(i), false)) // if char = . or -
+							
+							&& (( i == str.length() - 1)  // last character automatically fails, can't be followed by alpha num
+									
+									//this indentation looks weird but is technically correct because each  || / && is nested
+									|| (i < str.length() - 1 // check all chars except last one. Last char i = str.length
+											&& !isAlphaNum(str.charAt(i + 1))) // following char must be alphaNum
+									)
+							) { 
+					
 						validUsername = false;
 
 					}
