@@ -14,26 +14,14 @@ public class Validator {
 		System.out.println("isUsername(\"-.aemil\")   " + isUsername("-.aemil"));
 
 		System.out.println("test passwords:");
-		System.out.println("safePassword (\"H3ll0-WoRld\")  " + safePassword("H3ll0-WoRld")); // returns true???error in assignment 
+		System.out.println("safePassword (\"H3ll0-WoRld\")  " + safePassword("H3ll0-WoRld")); // returns true???error in
+																								// assignment
 		System.out.println("safePassword (\"W0w.Pr0ject\")  " + safePassword("W0w.Pr0ject")); // returns true
 		System.out.println("safePassword (\"A1.b2-\")       " + safePassword("A1.b2-")); // returns false
 		System.out.println("safePassword (\"D1nn3r-T1m3\")  " + safePassword("D1nn3r-T1m3")); // returns false
 		System.out.println("safePassword (\"Pa55w0RDis0k\") " + safePassword("Pa55w0RDis0k")); // returns false
-		
+
 		/////////////////////// TO TEST: ///////////////////////////////
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
 	}
 
@@ -68,8 +56,6 @@ public class Validator {
 		int indexOfAt = str.indexOf('@');
 		return str.substring(indexOfAt + 1);
 	}
-
-	////// Soli, March 6
 
 	public static boolean isDomainChar(char chr) {
 		if (isAlphaNum(chr) || isSpecialChar(chr, false)) {
@@ -130,8 +116,9 @@ public class Validator {
 			return false;
 		String[] strArr = null;
 		strArr = str.split("\\.");
-		//if strArr.length >2 means there are 2 or more '.' in the input string, is length ==1 mean no '.' in the input string return false
-		if (strArr.length>2 || strArr.length==1) {
+		// if strArr.length >2 means there are 2 or more '.' in the input string, is
+		// length ==1 mean no '.' in the input string return false
+		if (strArr.length > 2 || strArr.length == 1) {
 			return false;
 		}
 		char chr;
@@ -159,15 +146,17 @@ public class Validator {
 	}
 
 	public static boolean isEmail(String str) {
-		//if input string is not contain a single @ sign, then return false;
-		if(!singleAtSign(str))
+		// if input string is not contain a single @ sign, then return false;
+		if (!singleAtSign(str))
 			return false;
 
 		// if isPrefix return false, then return false;
-		if (!isPrefix(fetchBeforeAt(str))) return false;
+		if (!isPrefix(fetchBeforeAt(str)))
+			return false;
 
 		// if isDomain return false, then return false;
-		if (!isDomain(fetchAfterAt(str))) return false;
+		if (!isDomain(fetchAfterAt(str)))
+			return false;
 
 		return true;
 	}
@@ -180,22 +169,25 @@ public class Validator {
 
 		boolean alphaNumFollows = true; // dash or period must be followed by an alphanum
 
-		if (str.length() <= 7 && str.length() >= 1 && isSpecialChar(str.charAt(0), false)) { // if valid length & first char = '.' or '-'
+		if (str.length() <= 7 && str.length() >= 1 && isSpecialChar(str.charAt(0), false)) { // if valid length & first
+																								// char = '.' or '-'
 
 			for (int i = 0; i < str.length(); i++) { // iterate through each character
 
 				if (isDomainChar(str.charAt(i)) || str.charAt(i) == '!') { // if valid character
 
 					if ((isSpecialChar(str.charAt(i), false)) // if char = . or -
-							
-							&& (( i == str.length() - 1)  // last character automatically fails, can't be followed by alpha num
-									
-									//this indentation looks weird but is technically correct because each  || / && is nested
-									|| (i < str.length() - 1 // check all chars except last one. Last char i = str.length
+
+							&& ((i == str.length() - 1) // last character automatically fails, can't be followed by
+														// alpha num
+
+									// this indentation looks weird but is technically correct because 
+									// each || / && is nested
+									|| (i < str.length() - 1 // check all chars except last one. Last char i =
+																// str.length
 											&& !isAlphaNum(str.charAt(i + 1))) // following char must be alphaNum
-									)
-							) { 
-					
+							)) {
+
 						validUsername = false;
 
 					}
@@ -236,7 +228,7 @@ public class Validator {
 		boolean containsPDU = false; // must contain one Period, Dash, or Underscore
 
 		boolean containsAlphaNum = false; // must contain one alphaNum
-		
+
 		boolean noRepeats = true; // no repeating characters
 
 		if (str.length() >= 7 && str.length() <= 15) { // if valid length
@@ -260,7 +252,7 @@ public class Validator {
 
 					} else if (isSpecialChar(str.charAt(i), true)) { // is a period, dash, or underscore
 						containsPDU = true;
-						
+
 					}
 				} else { // invalid character
 					isSafe = false;
