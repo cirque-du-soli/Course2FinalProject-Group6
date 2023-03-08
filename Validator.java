@@ -197,7 +197,7 @@ public class Validator {
 
 						// check final criterion
 					} else if (i < str.length() - 1 // check all chars except last one. Last char i = str.length
-							&& (str.charAt(i) == '.' || str.charAt(i) == '-') // if char = . or -
+							&& (isSpecialChar(str.charAt(i), false)) // if char = . or -
 							&& !isAlphaNum(str.charAt(i + 1))) { // following char must be alphaNum
 
 						validUsername = false;
