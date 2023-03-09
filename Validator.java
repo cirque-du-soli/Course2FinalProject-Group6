@@ -7,7 +7,7 @@ public class Validator {
 
 	}
 
-	// check if input argument is a letter or a number, 
+	// check if input argument is a letter or a number,
 	// if yes return true, if not return false
 	public static boolean isAlphaNum(char chr) {
 		if (Character.isLetterOrDigit(chr)) {
@@ -93,27 +93,34 @@ public class Validator {
 	}
 
 	public static boolean isDomain(String str) {
+
 		// if the first char in input string is a period, then return false
 		if (str.charAt(0) == '.')
 			return false;
 		String[] strArr = null;
 		strArr = str.split("\\.");
+
 		// if strArr.length >2 means there are 2 or more '.' in the input string, is
 		// length ==1 mean no '.' in the input string return false
 		if (strArr.length > 2 || strArr.length == 1) {
 			return false;
 		}
+
 		char chr;
 		// first portion validation
 		if (strArr[0].length() == 1)
 			return false;
 		for (int i = 0; i < strArr[0].length(); i++) {
 			chr = strArr[0].charAt(i);
-			// if first portion not contains only alphanumeric characters, periods, and
-			// dashes. return false;
-			if (!isDomainChar(chr)) {
+
+			// First portion must contain only alphanumeric chars, periods, dashes
+
+			// first char of first portion must be an alphaNumeric char
+
+			if (!isDomainChar(chr) || (i == 0 && !isAlphaNum(chr))) {
 				return false;
 			}
+
 		}
 		// second portion validation, contains only letters
 		if (strArr[1].length() < 2)
